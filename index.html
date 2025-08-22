@@ -3,103 +3,142 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tyler Young | Drone Photo & Video</title>
+  <title>Tyler Young Video</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Arial', sans-serif; line-height: 1.6; color: #333; scroll-behavior: smooth; }
-    header {
-      background: url('https://images.unsplash.com/photo-1503264116251-35a269479413?auto=format&fit=crop&w=1500&q=80') no-repeat center center/cover;
-      height: 100vh; color: white;
-      display: flex; flex-direction: column; justify-content: center; align-items: center;
-      text-align: center; padding: 20px; position: relative;
+    body {
+      margin: 0;
+      font-family: 'Montserrat', sans-serif;
+      color: #222;
+      background-color: #f9f9f9;
     }
-    header::after {
-      content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(0,0,0,0.5); z-index: 1;
+
+    /* Hero Section */
+    .hero {
+      position: relative;
+      height: 100vh;
+      background: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e') no-repeat center center/cover;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      padding-right: 10%;
+      color: white;
     }
-    header h1, header p, header a { position: relative; z-index: 2; }
-    header h1 { font-size: 3rem; margin-bottom: 10px; text-shadow: 2px 2px 10px rgba(0,0,0,0.8); }
-    header p { font-size: 1.25rem; margin-bottom: 20px; text-shadow: 1px 1px 8px rgba(0,0,0,0.7); }
-    .btn {
-      display: inline-block; padding: 12px 24px; background: #ff6600; color: white;
-      text-decoration: none; font-weight: bold; border-radius: 6px; transition: background 0.3s;
+    .hero-text {
+      text-align: right;
+      max-width: 500px;
     }
-    .btn:hover { background: #e65c00; }
-    nav {
-      position: fixed; top: 0; left: 0; width: 100%; background: rgba(0,0,0,0.7);
-      color: white; display: flex; justify-content: center; padding: 10px; z-index: 1000;
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 4rem;
+      margin: 0;
     }
-    nav a { color: white; margin: 0 15px; text-decoration: none; font-weight: bold; }
-    nav a:hover { color: #ff6600; }
-    section { padding: 80px 20px; max-width: 1000px; margin: auto; }
-    section h2 { text-align: center; margin-bottom: 40px; font-size: 2rem; }
-    .about p { text-align: center; font-size: 1.1rem; max-width: 700px; margin: auto; }
+    .hero p {
+      font-size: 1.2rem;
+      margin-top: 1rem;
+      line-height: 1.6;
+    }
+    .cta {
+      margin-top: 1.5rem;
+      padding: 0.75rem 1.5rem;
+      font-size: 1rem;
+      border: none;
+      background: #ff6347;
+      color: white;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .cta:hover {
+      background: #e0523a;
+    }
+
+    /* Section Titles */
+    h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      margin: 3rem 0 1.5rem;
+      text-align: center;
+      color: #333;
+    }
+
+    /* Gallery Grid */
     .gallery {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      padding: 0 10% 3rem;
     }
     .gallery img {
-      width: 100%; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
       transition: transform 0.3s;
     }
-    .gallery img:hover { transform: scale(1.05); }
-    .contact { text-align: center; }
-    .contact a {
-      display: inline-block; margin: 10px; padding: 12px 20px; border: 2px solid #ff6600;
-      border-radius: 6px; color: #ff6600; text-decoration: none; transition: 0.3s;
+    .gallery img:hover {
+      transform: scale(1.05);
     }
-    .contact a:hover { background: #ff6600; color: white; }
+
+    /* Footer */
     footer {
-      background: #111; color: #ccc; text-align: center; padding: 20px;
+      text-align: center;
+      padding: 2rem;
+      background: #111;
+      color: white;
+      margin-top: 3rem;
+    }
+    footer a {
+      color: #ff6347;
+      text-decoration: none;
     }
   </style>
 </head>
 <body>
-  <!-- Nav -->
-  <nav>
-    <a href="#about">About</a>
-    <a href="#gallery">Gallery</a>
-    <a href="#contact">Contact</a>
-  </nav>
-
-  <!-- Hero -->
-  <header>
-    <h1>Tyler Young</h1>
-    <p>Drone Photo & Video | Real Estate • Builders • Events</p>
-    <a href="#contact" class="btn">Work With Me</a>
-  </header>
-
-  <!-- About -->
-  <section id="about" class="about">
-    <h2>About Me</h2>
-    <p>
-      I’m a Part 107 Certified drone pilot specializing in aerial photo & video for real estate, 
-      home builders, and events. My mission is to help you showcase your property or project 
-      in the most stunning way possible.
-    </p>
-  </section>
-
-  <!-- Gallery -->
-  <section id="gallery">
-    <h2>Gallery</h2>
-    <div class="gallery">
-      <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80" alt="Drone shot 1">
-      <img src="https://images.unsplash.com/photo-1473181488821-2d23949a045a?auto=format&fit=crop&w=800&q=80" alt="Drone shot 2">
-      <img src="https://images.unsplash.com/photo-1491553895911-0055eca6402d?auto=format&fit=crop&w=800&q=80" alt="Drone shot 3">
-      <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=800&q=80" alt="Drone shot 4">
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-text">
+      <h1>Tyler Young Video</h1>
+      <p>Capturing events, real estate, and builder projects with cinematic quality.</p>
+      <button class="cta" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Work With Me</button>
     </div>
   </section>
 
-  <!-- Contact -->
-  <section id="contact" class="contact">
-    <h2>Contact Me</h2>
-    <a href="mailto:your@email.com">📧 Email Me</a>
-    <a href="https://instagram.com/" target="_blank">📸 Instagram</a>
-    <a href="https://linkedin.com/" target="_blank">💼 LinkedIn</a>
+  <!-- Events Section -->
+  <section>
+    <h2>Events</h2>
+    <div class="gallery">
+      <img src="https://images.unsplash.com/photo-1521334884684-d80222895322" alt="Event 1">
+      <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30" alt="Event 2">
+      <img src="https://images.unsplash.com/photo-1515169067865-5387ec356754" alt="Event 3">
+    </div>
+  </section>
+
+  <!-- Builders Section -->
+  <section>
+    <h2>Builders</h2>
+    <div class="gallery">
+      <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e" alt="Builder 1">
+      <img src="https://images.unsplash.com/photo-1486308510493-aa64833634ef" alt="Builder 2">
+      <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c" alt="Builder 3">
+    </div>
+  </section>
+
+  <!-- Real Estate Section -->
+  <section>
+    <h2>Real Estate</h2>
+    <div class="gallery">
+      <img src="https://images.unsplash.com/photo-1505691938895-1758d7feb511" alt="Real Estate 1">
+      <img src="https://images.unsplash.com/photo-1570129477492-45c003edd2be" alt="Real Estate 2">
+      <img src="https://images.unsplash.com/photo-1600585152910-0c124b8caa94" alt="Real Estate 3">
+    </div>
   </section>
 
   <!-- Footer -->
-  <footer>
-    © 2025 Tyler Young | FAA Part 107 Certified
+  <footer id="contact">
+    <p>📩 Get in touch: <a href="mailto:your.email@example.com">your.email@example.com</a></p>
+    <p>&copy; 2025 Tyler Young Video</p>
   </footer>
 </body>
 </html>
