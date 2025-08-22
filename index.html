@@ -4,81 +4,273 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tyler Young Video</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
+    * {
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
     body {
       margin: 0;
-      font-family: 'Montserrat', sans-serif;
+      font-family: 'Inter', sans-serif;
       color: #222;
-      background-color: #f9f9f9;
+      background-color: #fff;
+      overflow-x: hidden;
     }
 
     /* Hero Section */
     .hero {
       position: relative;
-      height: 100vh;
+      height: 60vh;
       background: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e') no-repeat center center/cover;
       display: flex;
       align-items: center;
-      justify-content: flex-end;
-      padding-right: 10%;
+      justify-content: flex-start;
+      padding-left: 5%;
       color: white;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(0,0,0,0.5), rgba(0,0,0,0.2));
+      z-index: 1;
     }
     .hero-text {
-      text-align: right;
-      max-width: 500px;
+      text-align: left;
+      max-width: 600px;
+      z-index: 2;
     }
     .hero h1 {
       font-family: 'Playfair Display', serif;
-      font-size: 4rem;
+      font-size: 4.5rem;
       margin: 0;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.4);
     }
     .hero p {
-      font-size: 1.2rem;
+      font-size: 1.3rem;
       margin-top: 1rem;
-      line-height: 1.6;
+      line-height: 1.7;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.4);
     }
     .cta {
       margin-top: 1.5rem;
-      padding: 0.75rem 1.5rem;
-      font-size: 1rem;
+      padding: 1rem 2.5rem;
+      font-size: 1.2rem;
+      font-weight: 600;
       border: none;
       background: #ff6347;
       color: white;
-      border-radius: 8px;
+      border-radius: 50px;
       cursor: pointer;
-      transition: 0.3s;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
     }
     .cta:hover {
       background: #e0523a;
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.3);
     }
 
     /* Section Titles */
     h2 {
       font-family: 'Playfair Display', serif;
-      font-size: 2.5rem;
-      margin: 3rem 0 1.5rem;
+      font-size: 3rem;
+      margin: 4rem 0 2rem;
       text-align: center;
-      color: #333;
+      color: #222;
+      position: relative;
+      z-index: 2;
+    }
+    h2::after {
+      content: '';
+      width: 100px;
+      height: 5px;
+      background: #ff6347;
+      display: block;
+      margin: 0.75rem auto;
+      border-radius: 5px;
     }
 
-    /* Gallery Grid */
+    /* Carousel Gallery */
     .gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 20px;
-      padding: 0 10% 3rem;
+      padding: 2rem 5% 4rem;
+      position: relative;
+      background: linear-gradient(180deg, #f9f9f9 0%, #fff 100%);
+      margin: -3rem 0 0;
+      z-index: 1;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
     }
-    .gallery img {
+    .carousel-container {
+      position: relative;
+      max-width: 1200px;
+      margin: 0 auto;
+      overflow: hidden;
+    }
+    .carousel {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      gap: 20px;
+      padding: 20px;
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
+    }
+    .carousel::-webkit-scrollbar {
+      display: none;
+    }
+    .carousel img {
+      width: 350px;
+      height: 300px;
+      object-fit: cover;
+      border-radius: 15px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      scroll-snap-align: start;
+      flex: 0 0 auto;
+    }
+    .carousel img:hover {
+      transform: scale(1.05) translateY(-10px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+    }
+
+    /* Carousel Arrows */
+    .carousel-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0,0,0,0.5);
+      color: white;
+      border: none;
+      font-size: 2rem;
+      padding: 1rem;
+      cursor: pointer;
+      border-radius: 50%;
+      transition: background 0.3s;
+      z-index: 3;
+    }
+    .carousel-arrow:hover {
+      background: #ff6347;
+    }
+    .carousel-arrow.left {
+      left: 10px;
+    }
+    .carousel-arrow.right {
+      right: 10px;
+    }
+
+    /* Fullscreen Image Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
       width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.95);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+      backdrop-filter: blur(5px);
+    }
+    .modal img {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 15px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+    }
+    .modal-close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      color: white;
+      font-size: 2.5rem;
+      cursor: pointer;
+      transition: color 0.3s;
+    }
+    .modal-close:hover {
+      color: #ff6347;
+    }
+
+    /* About Section */
+    .about {
+      padding: 5rem 10%;
+      background: #fff;
+      text-align: center;
+      position: relative;
+      margin: -2rem 0 0;
+      z-index: 2;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+    .about-content {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .about-img {
+      width: 250px;
       height: 250px;
       object-fit: cover;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      transition: transform 0.3s;
+      border-radius: 50%;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+      transition: transform 0.3s ease;
     }
-    .gallery img:hover {
+    .about-img:hover {
       transform: scale(1.05);
+    }
+    .about p {
+      max-width: 600px;
+      font-size: 1.2rem;
+      line-height: 1.8;
+      color: #555;
+    }
+
+    /* Contact Section */
+    .contact {
+      padding: 5rem 10%;
+      background: linear-gradient(135deg, #f9f9f9 0%, #f1f1f1 100%);
+      text-align: center;
+      margin: -2rem 0 0;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+    .contact p {
+      font-size: 1.2rem;
+      color: #555;
+      margin-bottom: 1.5rem;
+    }
+    .contact a {
+      color: #ff6347;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .contact a:hover {
+      text-decoration: underline;
+    }
+    .social-links {
+      margin-top: 2rem;
+    }
+    .social-links a {
+      margin: 0 1.5rem;
+      font-size: 2rem;
+      color: #333;
+      transition: color 0.3s, transform 0.3s;
+    }
+    .social-links a:hover {
+      color: #ff6347;
+      transform: translateY(-3px);
     }
 
     /* Footer */
@@ -88,10 +280,46 @@
       background: #111;
       color: white;
       margin-top: 3rem;
+      border-radius: 0 0 20px 20px;
     }
     footer a {
       color: #ff6347;
       text-decoration: none;
+      font-weight: 600;
+    }
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .hero {
+        height: 50vh;
+      }
+      .hero h1 {
+        font-size: 3rem;
+      }
+      .hero p {
+        font-size: 1rem;
+      }
+      .cta {
+        padding: 0.75rem 2rem;
+        font-size: 1rem;
+      }
+      h2 {
+        font-size: 2.2rem;
+      }
+      .carousel img {
+        width: 250px;
+        height: 200px;
+      }
+      .about-content {
+        flex-direction: column;
+      }
+      .about-img {
+        width: 200px;
+        height: 200px;
+      }
     }
   </style>
 </head>
@@ -100,8 +328,17 @@
   <section class="hero">
     <div class="hero-text">
       <h1>Tyler Young Video</h1>
-      <p>Capturing events, real estate, and builder projects with cinematic quality.</p>
+      <p>Transforming moments into cinematic experiences with professional videography for events, real estate, and builder projects.</p>
       <button class="cta" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Work With Me</button>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="about">
+    <h2>About Me</h2>
+    <div class="about-content">
+      <img src="https://images.unsplash.com/photo-1506794778202-6d1d5e1a2986" alt="Tyler Young" class="about-img">
+      <p>Hi, I'm Tyler Young, a passionate videographer with over a decade of experience capturing life's most memorable moments. Specializing in events, real estate, and builder projects, I bring a cinematic touch to every project, ensuring your story is told with creativity and precision. My mission is to deliver high-quality visuals that resonate and inspire.</p>
     </div>
   </section>
 
@@ -109,9 +346,15 @@
   <section>
     <h2>Events</h2>
     <div class="gallery">
-      <img src="https://images.unsplash.com/photo-1521334884684-d80222895322" alt="Event 1">
-      <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30" alt="Event 2">
-      <img src="https://images.unsplash.com/photo-1515169067865-5387ec356754" alt="Event 3">
+      <div class="carousel-container">
+        <button class="carousel-arrow left" onclick="scrollCarousel('events-carousel', -350)">&#10094;</button>
+        <div class="carousel" id="events-carousel">
+          <img src="https://images.unsplash.com/photo-1521334884684-d80222895322" alt="Event 1" onclick="openModal(this.src)">
+          <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30" alt="Event 2" onclick="openModal(this.src)">
+          <img src="https://images.unsplash.com/photo-1515169067865-5387ec356754" alt="Event 3" onclick="openModal(this.src)">
+        </div>
+        <button class="carousel-arrow right" onclick="scrollCarousel('events-carousel', 350)">&#10095;</button>
+      </div>
     </div>
   </section>
 
@@ -119,9 +362,15 @@
   <section>
     <h2>Builders</h2>
     <div class="gallery">
-      <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e" alt="Builder 1">
-      <img src="https://images.unsplash.com/photo-1486308510493-aa64833634ef" alt="Builder 2">
-      <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c" alt="Builder 3">
+      <div class="carousel-container">
+        <button class="carousel-arrow left" onclick="scrollCarousel('builders-carousel', -350)">&#10094;</button>
+        <div class="carousel" id="builders-carousel">
+          <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e" alt="Builder 1" onclick="openModal(this.src)">
+          <img src="https://images.unsplash.com/photo-1486308510493-aa64833634ef" alt="Builder 2" onclick="openModal(this.src)">
+          <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c" alt="Builder 3" onclick="openModal(this.src)">
+        </div>
+        <button class="carousel-arrow right" onclick="scrollCarousel('builders-carousel', 350)">&#10095;</button>
+      </div>
     </div>
   </section>
 
@@ -129,16 +378,73 @@
   <section>
     <h2>Real Estate</h2>
     <div class="gallery">
-      <img src="https://images.unsplash.com/photo-1505691938895-1758d7feb511" alt="Real Estate 1">
-      <img src="https://images.unsplash.com/photo-1570129477492-45c003edd2be" alt="Real Estate 2">
-      <img src="https://images.unsplash.com/photo-1600585152910-0c124b8caa94" alt="Real Estate 3">
+      <div class="carousel-container">
+        <button class="carousel-arrow left" onclick="scrollCarousel('real-estate-carousel', -350)">&#10094;</button>
+        <div class="carousel" id="real-estate-carousel">
+          <img src="https://images.unsplash.com/photo-1505691938895-1758d7feb511" alt="Real Estate 1" onclick="openModal(this.src)">
+          <img src="https://images.unsplash.com/photo-1570129477492-45c003edd2be" alt="Real Estate 2" onclick="openModal(this.src)">
+          <img src="https://images.unsplash.com/photo-1600585152910-0c124b8caa94" alt="Real Estate 3" onclick="openModal(this.src)">
+        </div>
+        <button class="carousel-arrow right" onclick="scrollCarousel('real-estate-carousel', 350)">&#10095;</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="contact" id="contact">
+    <h2>Contact Me</h2>
+    <p>Ready to bring your vision to life? Reach out to discuss your next project.</p>
+    <p>Email: <a href="mailto:your.email@example.com">your.email@example.com</a></p>
+    <p>Phone: <a href="tel:+1234567890">+1 (234) 567-890</a></p>
+    <div class="social-links">
+      <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+      <a href="https://vimeo.com" target="_blank"><i class="fab fa-vimeo-v"></i></a>
+      <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin-in"></i></a>
     </div>
   </section>
 
   <!-- Footer -->
-  <footer id="contact">
-    <p>📩 Get in touch: <a href="mailto:your.email@example.com">your.email@example.com</a></p>
-    <p>&copy; 2025 Tyler Young Video</p>
+  <footer>
+    <p>&copy; 2025 Tyler Young Video. All rights reserved.</p>
   </footer>
+
+  <!-- Fullscreen Image Modal -->
+  <div class="modal" id="imageModal">
+    <span class="modal-close" onclick="closeModal()">&times;</span>
+    <img id="modalImage" src="" alt="Fullscreen Image">
+  </div>
+
+  <script>
+    function openModal(src) {
+      const modal = document.getElementById('imageModal');
+      const modalImage = document.getElementById('modalImage');
+      modalImage.src = src;
+      modal.style.display = 'flex';
+    }
+
+    function closeModal() {
+      const modal = document.getElementById('imageModal');
+      modal.style.display = 'none';
+    }
+
+    function scrollCarousel(carouselId, scrollAmount) {
+      const carousel = document.getElementById(carouselId);
+      carousel.scrollLeft += scrollAmount;
+    }
+
+    // Close modal when clicking outside the image
+    document.getElementById('imageModal').addEventListener('click', function(e) {
+      if (e.target === this) {
+        closeModal();
+      }
+    });
+
+    // Close modal with Escape key
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        closeModal();
+      }
+    });
+  </script>
 </body>
 </html>
