@@ -1,12 +1,105 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>My Drone Business</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tyler Young | Drone Photo & Video</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Arial', sans-serif; line-height: 1.6; color: #333; scroll-behavior: smooth; }
+    header {
+      background: url('https://images.unsplash.com/photo-1503264116251-35a269479413?auto=format&fit=crop&w=1500&q=80') no-repeat center center/cover;
+      height: 100vh; color: white;
+      display: flex; flex-direction: column; justify-content: center; align-items: center;
+      text-align: center; padding: 20px; position: relative;
+    }
+    header::after {
+      content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.5); z-index: 1;
+    }
+    header h1, header p, header a { position: relative; z-index: 2; }
+    header h1 { font-size: 3rem; margin-bottom: 10px; text-shadow: 2px 2px 10px rgba(0,0,0,0.8); }
+    header p { font-size: 1.25rem; margin-bottom: 20px; text-shadow: 1px 1px 8px rgba(0,0,0,0.7); }
+    .btn {
+      display: inline-block; padding: 12px 24px; background: #ff6600; color: white;
+      text-decoration: none; font-weight: bold; border-radius: 6px; transition: background 0.3s;
+    }
+    .btn:hover { background: #e65c00; }
+    nav {
+      position: fixed; top: 0; left: 0; width: 100%; background: rgba(0,0,0,0.7);
+      color: white; display: flex; justify-content: center; padding: 10px; z-index: 1000;
+    }
+    nav a { color: white; margin: 0 15px; text-decoration: none; font-weight: bold; }
+    nav a:hover { color: #ff6600; }
+    section { padding: 80px 20px; max-width: 1000px; margin: auto; }
+    section h2 { text-align: center; margin-bottom: 40px; font-size: 2rem; }
+    .about p { text-align: center; font-size: 1.1rem; max-width: 700px; margin: auto; }
+    .gallery {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;
+    }
+    .gallery img {
+      width: 100%; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      transition: transform 0.3s;
+    }
+    .gallery img:hover { transform: scale(1.05); }
+    .contact { text-align: center; }
+    .contact a {
+      display: inline-block; margin: 10px; padding: 12px 20px; border: 2px solid #ff6600;
+      border-radius: 6px; color: #ff6600; text-decoration: none; transition: 0.3s;
+    }
+    .contact a:hover { background: #ff6600; color: white; }
+    footer {
+      background: #111; color: #ccc; text-align: center; padding: 20px;
+    }
+  </style>
 </head>
 <body>
-  <h1>Welcome to My Drone Photography</h1>
-  <p>High-quality drone photos & videos for real estate, businesses, and events.</p>
-  <p>📩 Contact me: <a href="mailto:youremail@gmail.com">youremail@gmail.com</a></p>
+  <!-- Nav -->
+  <nav>
+    <a href="#about">About</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <!-- Hero -->
+  <header>
+    <h1>Tyler Young</h1>
+    <p>Drone Photo & Video | Real Estate • Builders • Events</p>
+    <a href="#contact" class="btn">Work With Me</a>
+  </header>
+
+  <!-- About -->
+  <section id="about" class="about">
+    <h2>About Me</h2>
+    <p>
+      I’m a Part 107 Certified drone pilot specializing in aerial photo & video for real estate, 
+      home builders, and events. My mission is to help you showcase your property or project 
+      in the most stunning way possible.
+    </p>
+  </section>
+
+  <!-- Gallery -->
+  <section id="gallery">
+    <h2>Gallery</h2>
+    <div class="gallery">
+      <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80" alt="Drone shot 1">
+      <img src="https://images.unsplash.com/photo-1473181488821-2d23949a045a?auto=format&fit=crop&w=800&q=80" alt="Drone shot 2">
+      <img src="https://images.unsplash.com/photo-1491553895911-0055eca6402d?auto=format&fit=crop&w=800&q=80" alt="Drone shot 3">
+      <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=800&q=80" alt="Drone shot 4">
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="contact">
+    <h2>Contact Me</h2>
+    <a href="mailto:your@email.com">📧 Email Me</a>
+    <a href="https://instagram.com/" target="_blank">📸 Instagram</a>
+    <a href="https://linkedin.com/" target="_blank">💼 LinkedIn</a>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    © 2025 Tyler Young | FAA Part 107 Certified
+  </footer>
 </body>
 </html>
