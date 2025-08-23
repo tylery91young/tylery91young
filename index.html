@@ -393,8 +393,10 @@
 <body>
   <!-- Hero Section with YouTube Video -->
   <section class="hero">
+    <!-- To change the video loop start and end times, modify the 'start' and 'end' parameters below (in seconds).
+         Current: start=75 (1:15), end=102 (1:42). Replace with your desired times in seconds. -->
     <iframe
-      src="https://www.youtube.com/embed/Wn-DjIepuoM?autoplay=1&mute=1&loop=1&playlist=Wn-DjIepuoM&controls=0&modestbranding=1&showinfo=0&rel=0"
+      src="https://www.youtube.com/embed/Wn-DjIepuoM?autoplay=1&mute=1&loop=1&playlist=Wn-DjIepuoM&controls=0&modestbranding=1&showinfo=0&rel=0&start=75&end=102"
       frameborder="0"
       allow="autoplay; encrypted-media"
       allowfullscreen
@@ -410,6 +412,7 @@
   <section class="about">
     <h2>About Me</h2>
     <div class="about-content">
+      <!-- Replace the src URL below with the URL to your own profile picture -->
       <img src="https://images.unsplash.com/photo-1506794778202-6d1d5e1a2986" alt="Tyler Young" class="about-img">
       <p class="about-text">Hi, I'm Tyler Young, a passionate media creator with over a decade of experience capturing life's most memorable moments. Specializing in events, real estate, and builder projects, I bring a cinematic touch to every project, ensuring your story is told with creativity and precision. My mission is to deliver high-quality visuals that resonate and inspire.</p>
     </div>
@@ -422,6 +425,7 @@
       <div class="carousel-container">
         <button class="carousel-arrow left" onclick="scrollCarousel('events-carousel', -400)">&#10094;</button>
         <div class="carousel" id="events-carousel">
+          <!-- Replace the src URLs below with URLs to your own event images -->
           <img src="https://images.unsplash.com/photo-1521334884684-d80222895322" alt="Event 1" onclick="openModal(this.src)">
           <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30" alt="Event 2" onclick="openModal(this.src)">
           <img src="https://images.unsplash.com/photo-1515169067865-5387ec356754" alt="Event 3" onclick="openModal(this.src)">
@@ -438,6 +442,7 @@
       <div class="carousel-container">
         <button class="carousel-arrow left" onclick="scrollCarousel('builders-carousel', -400)">&#10094;</button>
         <div class="carousel" id="builders-carousel">
+          <!-- Replace the src URLs below with URLs to your own builder images -->
           <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e" alt="Builder 1" onclick="openModal(this.src)">
           <img src="https://images.unsplash.com/photo-1486308510493-aa64833634ef" alt="Builder 2" onclick="openModal(this.src)">
           <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c" alt="Builder 3" onclick="openModal(this.src)">
@@ -454,6 +459,7 @@
       <div class="carousel-container">
         <button class="carousel-arrow left" onclick="scrollCarousel('real-estate-carousel', -400)">&#10094;</button>
         <div class="carousel" id="real-estate-carousel">
+          <!-- Replace the src URLs below with URLs to your own real estate images -->
           <img src="https://images.unsplash.com/photo-1505691938895-1758d7feb511" alt="Real Estate 1" onclick="openModal(this.src)">
           <img src="https://images.unsplash.com/photo-1570129477492-45c003edd2be" alt="Real Estate 2" onclick="openModal(this.src)">
           <img src="https://images.unsplash.com/photo-1600585152910-0c124b8caa94" alt="Real Estate 3" onclick="openModal(this.src)">
@@ -467,13 +473,15 @@
   <section class="contact" id="contact">
     <h2>Contact Me</h2>
     <p>Ready to bring your vision to life? Reach out to discuss your next project.</p>
+    <!-- Replace the email address below with your actual email -->
     <p>Email: <a href="mailto:your.email@example.com">your.email@example.com</a></p>
+    <!-- Replace the phone number below with your actual phone number -->
     <p>Phone: <a href="tel:+1234567890">+1 (234) 567-890</a></p>
     <div class="social-links">
+      <!-- Replace the href URLs below with your actual social media profile URLs -->
       <a href="https://www.youtube.com/channel/UC3WlMkfECXLxuhtZRHm69ng" target="_blank"><i class="fab fa-youtube"></i></a>
-      <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
-      <a href="https://vimeo.com" target="_blank"><i class="fab fa-vimeo-v"></i></a>
-      <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+      <a href="https://instagram.com/yourprofile" target="_blank"><i class="fab fa-instagram"></i></a>
+      <a href="https://linkedin.com/in/yourprofile" target="_blank"><i class="fab fa-linkedin-in"></i></a>
     </div>
   </section>
 
