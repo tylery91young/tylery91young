@@ -20,26 +20,27 @@
       overflow-x: hidden;
     }
 
-    /* Hero Section with YouTube Video Background */
+    /* Hero Section with Full-Screen YouTube Video */
     .hero {
-      position: relative;
-      height: 90vh;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
       display: flex;
       align-items: center;
       justify-content: flex-start;
       padding-left: 5%;
       color: white;
       overflow: hidden;
+      z-index: 1;
     }
     .hero iframe {
       position: absolute;
-      top: 50%;
-      left: 50%;
-      min-width: 100%;
-      min-height: 100%;
-      width: auto;
-      height: auto;
-      transform: translate(-50%, -50%);
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
       z-index: -1;
       object-fit: cover;
     }
@@ -51,7 +52,7 @@
       width: 100%;
       height: 100%;
       background: linear-gradient(135deg, rgba(0,0,0,0.6), rgba(0,0,0,0.3));
-      z-index: 1;
+      z-index: 0;
     }
     .hero-text {
       text-align: left;
@@ -98,6 +99,14 @@
       }
     }
 
+    /* Content Wrapper to Ensure Hero Overlaps */
+    .content-wrapper {
+      position: relative;
+      margin-top: 100vh;
+      z-index: 2;
+      background: #fff;
+    }
+
     /* Section Titles */
     h2 {
       font-family: 'Playfair Display', serif;
@@ -106,14 +115,13 @@
       text-align: center;
       color: #222;
       position: relative;
-      z-index: 2;
       opacity: 0;
-      transform: translateY(30px);
+      transform: translateY(50px) scale(0.95);
       transition: opacity 0.8s ease, transform 0.8s ease;
     }
     h2.visible {
       opacity: 1;
-      transform: translateY(0);
+      transform: translateY(0) scale(1);
     }
     h2::after {
       content: '';
@@ -131,16 +139,16 @@
       position: relative;
       background: linear-gradient(180deg, #f9f9f9 0%, #fff 100%);
       margin: -4rem 0 0;
-      z-index: 1;
       border-radius: 30px;
       box-shadow: 0 15px 40px rgba(0,0,0,0.15);
       opacity: 0;
-      transform: translateY(50px);
+      transform: translateY(50px) rotateX(10deg);
       transition: opacity 1s ease, transform 1s ease;
+      transform-style: preserve-3d;
     }
     .gallery.visible {
       opacity: 1;
-      transform: translateY(0);
+      transform: translateY(0) rotateX(0deg);
     }
     .carousel-container {
       position: relative;
@@ -170,6 +178,13 @@
       transition: transform 0.4s ease, box-shadow 0.4s ease;
       scroll-snap-align: start;
       flex: 0 0 auto;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    .carousel img.visible {
+      opacity: 1;
+      transform: translateY(0);
+      transition: opacity 0.6s ease 0.2s, transform 0.6s ease 0.2s;
     }
     .carousel img:hover {
       transform: scale(1.08) translateY(-15px);
@@ -254,16 +269,16 @@
       text-align: center;
       position: relative;
       margin: -3rem 0 0;
-      z-index: 2;
       border-radius: 30px;
       box-shadow: 0 15px 40px rgba(0,0,0,0.15);
       opacity: 0;
-      transform: translateY(50px);
+      transform: translateY(50px) rotateX(10deg);
       transition: opacity 1s ease, transform 1s ease;
+      transform-style: preserve-3d;
     }
     .about.visible {
       opacity: 1;
-      transform: translateY(0);
+      transform: translateY(0) rotateX(0deg);
     }
     .about-content {
       display: flex;
@@ -302,12 +317,13 @@
       border-radius: 30px;
       box-shadow: 0 15px 40px rgba(0,0,0,0.15);
       opacity: 0;
-      transform: translateY(50px);
+      transform: translateY(50px) rotateX(10deg);
       transition: opacity 1s ease, transform 1s ease;
+      transform-style: preserve-3d;
     }
     .contact.visible {
       opacity: 1;
-      transform: translateY(0);
+      transform: translateY(0) rotateX(0deg);
     }
     .contact p {
       font-size: 1.3rem;
@@ -357,9 +373,6 @@
 
     /* Responsive Design */
     @media (max-width: 768px) {
-      .hero {
-        height: 75vh;
-      }
       .hero h1 {
         font-size: 3.5rem;
       }
@@ -391,7 +404,7 @@
   </style>
 </head>
 <body>
-  <!-- Hero Section with YouTube Video -->
+  <!-- Hero Section with Full-Screen YouTube Video -->
   <section class="hero">
     <!-- To change the video loop start and end times, modify the 'start' and 'end' parameters below (in seconds).
          Current: start=75 (1:15), end=102 (1:42). Replace with your desired times in seconds. -->
@@ -400,6 +413,7 @@
       frameborder="0"
       allow="autoplay; encrypted-media"
       allowfullscreen
+      loading="eager"
     ></iframe>
     <div class="hero-text">
       <h1>Tyler Young Media</h1>
@@ -408,87 +422,90 @@
     </div>
   </section>
 
-  <!-- About Section -->
-  <section class="about">
-    <h2>About Me</h2>
-    <div class="about-content">
-      <!-- Replace the src URL below with the URL to your own profile picture -->
-      <img src="https://images.unsplash.com/photo-1506794778202-6d1d5e1a2986" alt="Tyler Young" class="about-img">
-      <p class="about-text">Hi, I'm Tyler Young, a passionate media creator with over a decade of experience capturing life's most memorable moments. Specializing in events, real estate, and builder projects, I bring a cinematic touch to every project, ensuring your story is told with creativity and precision. My mission is to deliver high-quality visuals that resonate and inspire.</p>
-    </div>
-  </section>
-
-  <!-- Events Section -->
-  <section>
-    <h2>Events</h2>
-    <div class="gallery">
-      <div class="carousel-container">
-        <button class="carousel-arrow left" onclick="scrollCarousel('events-carousel', -400)">&#10094;</button>
-        <div class="carousel" id="events-carousel">
-          <!-- Replace the src URLs below with URLs to your own event images -->
-          <img src="https://images.unsplash.com/photo-1521334884684-d80222895322" alt="Event 1" onclick="openModal(this.src)">
-          <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30" alt="Event 2" onclick="openModal(this.src)">
-          <img src="https://images.unsplash.com/photo-1515169067865-5387ec356754" alt="Event 3" onclick="openModal(this.src)">
-        </div>
-        <button class="carousel-arrow right" onclick="scrollCarousel('events-carousel', 400)">&#10095;</button>
+  <!-- Content Wrapper -->
+  <div class="content-wrapper">
+    <!-- About Section -->
+    <section class="about">
+      <h2>About Me</h2>
+      <div class="about-content">
+        <!-- Replace the src URL below with the URL to your own profile picture -->
+        <img src="https://images.unsplash.com/photo-1506794778202-6d1d5e1a2986" alt="Tyler Young" class="about-img">
+        <p class="about-text">Hi, I'm Tyler Young, a passionate media creator with over a decade of experience capturing life's most memorable moments. Specializing in events, real estate, and builder projects, I bring a cinematic touch to every project, ensuring your story is told with creativity and precision. My mission is to deliver high-quality visuals that resonate and inspire.</p>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Builders Section -->
-  <section>
-    <h2>Builders</h2>
-    <div class="gallery">
-      <div class="carousel-container">
-        <button class="carousel-arrow left" onclick="scrollCarousel('builders-carousel', -400)">&#10094;</button>
-        <div class="carousel" id="builders-carousel">
-          <!-- Replace the src URLs below with URLs to your own builder images -->
-          <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e" alt="Builder 1" onclick="openModal(this.src)">
-          <img src="https://images.unsplash.com/photo-1486308510493-aa64833634ef" alt="Builder 2" onclick="openModal(this.src)">
-          <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c" alt="Builder 3" onclick="openModal(this.src)">
+    <!-- Events Section -->
+    <section>
+      <h2>Events</h2>
+      <div class="gallery">
+        <div class="carousel-container">
+          <button class="carousel-arrow left" onclick="scrollCarousel('events-carousel', -400)">&#10094;</button>
+          <div class="carousel" id="events-carousel">
+            <!-- Replace the src URLs below with URLs to your own event images -->
+            <img src="https://images.unsplash.com/photo-1521334884684-d80222895322" alt="Event 1" onclick="openModal(this.src)">
+            <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30" alt="Event 2" onclick="openModal(this.src)">
+            <img src="https://images.unsplash.com/photo-1515169067865-5387ec356754" alt="Event 3" onclick="openModal(this.src)">
+          </div>
+          <button class="carousel-arrow right" onclick="scrollCarousel('events-carousel', 400)">&#10095;</button>
         </div>
-        <button class="carousel-arrow right" onclick="scrollCarousel('builders-carousel', 400)">&#10095;</button>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Real Estate Section -->
-  <section>
-    <h2>Real Estate</h2>
-    <div class="gallery">
-      <div class="carousel-container">
-        <button class="carousel-arrow left" onclick="scrollCarousel('real-estate-carousel', -400)">&#10094;</button>
-        <div class="carousel" id="real-estate-carousel">
-          <!-- Replace the src URLs below with URLs to your own real estate images -->
-          <img src="https://images.unsplash.com/photo-1505691938895-1758d7feb511" alt="Real Estate 1" onclick="openModal(this.src)">
-          <img src="https://images.unsplash.com/photo-1570129477492-45c003edd2be" alt="Real Estate 2" onclick="openModal(this.src)">
-          <img src="https://images.unsplash.com/photo-1600585152910-0c124b8caa94" alt="Real Estate 3" onclick="openModal(this.src)">
+    <!-- Builders Section -->
+    <section>
+      <h2>Builders</h2>
+      <div class="gallery">
+        <div class="carousel-container">
+          <button class="carousel-arrow left" onclick="scrollCarousel('builders-carousel', -400)">&#10094;</button>
+          <div class="carousel" id="builders-carousel">
+            <!-- Replace the src URLs below with URLs to your own builder images -->
+            <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e" alt="Builder 1" onclick="openModal(this.src)">
+            <img src="https://images.unsplash.com/photo-1486308510493-aa64833634ef" alt="Builder 2" onclick="openModal(this.src)">
+            <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c" alt="Builder 3" onclick="openModal(this.src)">
+          </div>
+          <button class="carousel-arrow right" onclick="scrollCarousel('builders-carousel', 400)">&#10095;</button>
         </div>
-        <button class="carousel-arrow right" onclick="scrollCarousel('real-estate-carousel', 400)">&#10095;</button>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Contact Section -->
-  <section class="contact" id="contact">
-    <h2>Contact Me</h2>
-    <p>Ready to bring your vision to life? Reach out to discuss your next project.</p>
-    <!-- Replace the email address below with your actual email -->
-    <p>Email: <a href="mailto:your.email@example.com">your.email@example.com</a></p>
-    <!-- Replace the phone number below with your actual phone number -->
-    <p>Phone: <a href="tel:+1234567890">+1 (234) 567-890</a></p>
-    <div class="social-links">
-      <!-- Replace the href URLs below with your actual social media profile URLs -->
-      <a href="https://www.youtube.com/channel/UC3WlMkfECXLxuhtZRHm69ng" target="_blank"><i class="fab fa-youtube"></i></a>
-      <a href="https://instagram.com/yourprofile" target="_blank"><i class="fab fa-instagram"></i></a>
-      <a href="https://linkedin.com/in/yourprofile" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-    </div>
-  </section>
+    <!-- Real Estate Section -->
+    <section>
+      <h2>Real Estate</h2>
+      <div class="gallery">
+        <div class="carousel-container">
+          <button class="carousel-arrow left" onclick="scrollCarousel('real-estate-carousel', -400)">&#10094;</button>
+          <div class="carousel" id="real-estate-carousel">
+            <!-- Replace the src URLs below with URLs to your own real estate images -->
+            <img src="https://images.unsplash.com/photo-1505691938895-1758d7feb511" alt="Real Estate 1" onclick="openModal(this.src)">
+            <img src="https://images.unsplash.com/photo-1570129477492-45c003edd2be" alt="Real Estate 2" onclick="openModal(this.src)">
+            <img src="https://images.unsplash.com/photo-1600585152910-0c124b8caa94" alt="Real Estate 3" onclick="openModal(this.src)">
+          </div>
+          <button class="carousel-arrow right" onclick="scrollCarousel('real-estate-carousel', 400)">&#10095;</button>
+        </div>
+      </div>
+    </section>
 
-  <!-- Footer -->
-  <footer>
-    <p>&copy; 2025 Tyler Young Media. All rights reserved.</p>
-  </footer>
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+      <h2>Contact Me</h2>
+      <p>Ready to bring your vision to life? Reach out to discuss your next project.</p>
+      <!-- Replace the email address below with your actual email -->
+      <p>Email: <a href="mailto:your.email@example.com">your.email@example.com</a></p>
+      <!-- Replace the phone number below with your actual phone number -->
+      <p>Phone: <a href="tel:+1234567890">+1 (234) 567-890</a></p>
+      <div class="social-links">
+        <!-- Replace the href URLs below with your actual social media profile URLs -->
+        <a href="https://www.youtube.com/channel/UC3WlMkfECXLxuhtZRHm69ng" target="_blank"><i class="fab fa-youtube"></i></a>
+        <a href="https://instagram.com/yourprofile" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="https://linkedin.com/in/yourprofile" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <p>&copy; 2025 Tyler Young Media. All rights reserved.</p>
+    </footer>
+  </div>
 
   <!-- Fullscreen Image Modal -->
   <div class="modal" id="imageModal">
@@ -530,6 +547,7 @@
 
     // Intersection Observer for scroll animations
     const sections = document.querySelectorAll('h2, .gallery, .about, .contact');
+    const images = document.querySelectorAll('.carousel img');
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -539,7 +557,10 @@
     }, { threshold: 0.1 });
 
     sections.forEach(section => {
-      observer.observe(section);
+      observer observe(section);
+    });
+    images.forEach(image => {
+      observer.observe(image);
     });
   </script>
 </body>
