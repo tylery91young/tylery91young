@@ -43,6 +43,9 @@
       height: 100vh;
       z-index: -1;
       object-fit: cover;
+      border: none;
+      margin: 0;
+      padding: 0;
     }
     .hero::before {
       content: '';
@@ -262,6 +265,32 @@
       transform: rotate(90deg);
     }
 
+    /* Certifications Section */
+    .certifications {
+      padding: 6rem 10%;
+      background: #fff;
+      text-align: center;
+      position: relative;
+      margin: -3rem 0 0;
+      border-radius: 30px;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+      opacity: 0;
+      transform: translateY(50px) rotateX(10deg);
+      transition: opacity 1s ease, transform 1s ease;
+      transform-style: preserve-3d;
+    }
+    .certifications.visible {
+      opacity: 1;
+      transform: translateY(0) rotateX(0deg);
+    }
+    .certifications p {
+      max-width: 700px;
+      font-size: 1.3rem;
+      line-height: 2;
+      color: #444;
+      margin: 0 auto;
+    }
+
     /* About Section */
     .about {
       padding: 6rem 10%;
@@ -424,6 +453,12 @@
 
   <!-- Content Wrapper -->
   <div class="content-wrapper">
+    <!-- Certifications Section -->
+    <section class="certifications">
+      <h2>Certifications</h2>
+      <p>I am proud to be FAA Part 107 certified, ensuring safe and professional drone operations for aerial photography and videography. This certification allows me to deliver stunning, high-quality visuals while adhering to all federal regulations.</p>
+    </section>
+
     <!-- About Section -->
     <section class="about">
       <h2>About Me</h2>
@@ -489,15 +524,12 @@
     <section class="contact" id="contact">
       <h2>Contact Me</h2>
       <p>Ready to bring your vision to life? Reach out to discuss your next project.</p>
-      <!-- Replace the email address below with your actual email -->
-      <p>Email: <a href="mailto:your.email@example.com">your.email@example.com</a></p>
-      <!-- Replace the phone number below with your actual phone number -->
+      <p>Email: <a href="mailto:tyleryoung1796@gmail.com">tyleryoung1796@gmail.com</a></p>
       <p>Phone: <a href="tel:+18645612308">+1 (864) 561-2308</a></p>
       <div class="social-links">
-        <!-- Replace the href URLs below with your actual social media profile URLs -->
         <a href="https://www.youtube.com/@tyleryoungfilms" target="_blank"><i class="fab fa-youtube"></i></a>
         <a href="https://www.instagram.com/tyleryoungvideo/" target="_blank"><i class="fab fa-instagram"></i></a>
-        <a href="www.linkedin.com/in/tyler-young91" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://www.linkedin.com/in/tyler-young91" target="_blank"><i class="fab fa-linkedin-in"></i></a>
       </div>
     </section>
 
@@ -546,7 +578,7 @@
     });
 
     // Intersection Observer for scroll animations
-    const sections = document.querySelectorAll('h2, .gallery, .about, .contact');
+    const sections = document.querySelectorAll('h2, .gallery, .about, .contact, .certifications');
     const images = document.querySelectorAll('.carousel img');
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
@@ -557,7 +589,7 @@
     }, { threshold: 0.1 });
 
     sections.forEach(section => {
-      observer observe(section);
+      observer.observe(section);
     });
     images.forEach(image => {
       observer.observe(image);
