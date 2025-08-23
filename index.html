@@ -20,6 +20,35 @@
       overflow-x: hidden;
     }
 
+    /* Navigation Bar */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: #fff;
+      padding: 1rem 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      z-index: 3;
+    }
+    .navbar-logo img {
+      height: 40px; /* Adjust size as needed */
+    }
+    .navbar-links a {
+      margin-left: 2rem;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #333;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    .navbar-links a:hover {
+      color: #ff6347;
+    }
+
     /* Hero Section with Full-Screen YouTube Video */
     .hero {
       position: fixed;
@@ -35,17 +64,20 @@
       overflow: hidden;
       z-index: 1;
     }
-    .hero iframe {
+    .hero #player {
       position: absolute;
       top: 0;
       left: 0;
       width: 100vw;
       height: 100vh;
+      min-width: 100vw;
+      min-height: 100vh;
       z-index: -1;
       object-fit: cover;
       border: none;
       margin: 0;
       padding: 0;
+      transform: scale(1.1); /* Slight zoom to ensure edge-to-edge coverage */
     }
     .hero::before {
       content: '';
@@ -113,8 +145,8 @@
     /* Section Titles */
     h2 {
       font-family: 'Playfair Display', serif;
-      font-size: 3.5rem;
-      margin: 5rem 0 2.5rem;
+      font-size: 3rem;
+      margin: 4rem 0 2rem;
       text-align: center;
       color: #222;
       position: relative;
@@ -128,22 +160,68 @@
     }
     h2::after {
       content: '';
-      width: 120px;
-      height: 5px;
+      width: 100px;
+      height: 4px;
       background: linear-gradient(90deg, #ff6347, #e0523a);
       display: block;
-      margin: 1rem auto;
+      margin: 0.8rem auto;
       border-radius: 5px;
+    }
+
+    /* Certifications Section */
+    .certifications {
+      padding: 3rem 10%;
+      background: #fff;
+      text-align: center;
+      position: relative;
+      margin: -2rem 0 0;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      opacity: 0;
+      transform: translateY(50px) rotateX(10deg);
+      transition: opacity 1s ease, transform 1s ease;
+      transform-style: preserve-3d;
+    }
+    .certifications.visible {
+      opacity: 1;
+      transform: translateY(0) rotateX(0deg);
+    }
+    .certifications-content {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+      max-width: 1000px;
+      margin: 0 auto;
+      text-align: left;
+    }
+    .certifications-img {
+      width: 200px;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 15px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+    .certifications-img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    }
+    .certifications-text {
+      max-width: 600px;
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: #444;
     }
 
     /* Carousel Gallery */
     .gallery {
-      padding: 2rem 5% 5rem;
+      padding: 2rem 5% 4rem;
       position: relative;
       background: linear-gradient(180deg, #f9f9f9 0%, #fff 100%);
-      margin: -4rem 0 0;
-      border-radius: 30px;
-      box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+      margin: -2rem 0 0;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
       opacity: 0;
       transform: translateY(50px) rotateX(10deg);
       transition: opacity 1s ease, transform 1s ease;
@@ -163,8 +241,8 @@
       display: flex;
       overflow-x: auto;
       scroll-snap-type: x mandatory;
-      gap: 25px;
-      padding: 25px;
+      gap: 20px;
+      padding: 20px;
       scroll-behavior: smooth;
       -webkit-overflow-scrolling: touch;
     }
@@ -172,11 +250,11 @@
       display: none;
     }
     .carousel img {
-      width: 400px;
-      height: 350px;
+      width: 350px;
+      height: 300px;
       object-fit: cover;
-      border-radius: 20px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+      border-radius: 15px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.2);
       cursor: pointer;
       transition: transform 0.4s ease, box-shadow 0.4s ease;
       scroll-snap-align: start;
@@ -190,8 +268,8 @@
       transition: opacity 0.6s ease 0.2s, transform 0.6s ease 0.2s;
     }
     .carousel img:hover {
-      transform: scale(1.08) translateY(-15px);
-      box-shadow: 0 12px 30px rgba(0,0,0,0.35);
+      transform: scale(1.08) translateY(-10px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
     }
 
     /* Carousel Arrows */
@@ -202,8 +280,8 @@
       background: rgba(0,0,0,0.6);
       color: white;
       border: none;
-      font-size: 2.5rem;
-      padding: 1.2rem;
+      font-size: 2rem;
+      padding: 1rem;
       cursor: pointer;
       border-radius: 50%;
       transition: background 0.3s, transform 0.3s;
@@ -214,10 +292,10 @@
       transform: translateY(-50%) scale(1.1);
     }
     .carousel-arrow.left {
-      left: 15px;
+      left: 10px;
     }
     .carousel-arrow.right {
-      right: 15px;
+      right: 10px;
     }
 
     /* Fullscreen Image Modal */
@@ -237,8 +315,8 @@
     .modal img {
       max-width: 90%;
       max-height: 90%;
-      border-radius: 20px;
-      box-shadow: 0 15px 30px rgba(0,0,0,0.5);
+      border-radius: 15px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.5);
       animation: zoomIn 0.5s ease;
     }
     @keyframes zoomIn {
@@ -253,10 +331,10 @@
     }
     .modal-close {
       position: absolute;
-      top: 25px;
-      right: 25px;
+      top: 20px;
+      right: 20px;
       color: white;
-      font-size: 3rem;
+      font-size: 2.5rem;
       cursor: pointer;
       transition: color 0.3s, transform 0.3s;
     }
@@ -265,86 +343,14 @@
       transform: rotate(90deg);
     }
 
-    /* Certifications Section */
-    .certifications {
-      padding: 6rem 10%;
-      background: #fff;
-      text-align: center;
-      position: relative;
-      margin: -3rem 0 0;
-      border-radius: 30px;
-      box-shadow: 0 15px 40px rgba(0,0,0,0.15);
-      opacity: 0;
-      transform: translateY(50px) rotateX(10deg);
-      transition: opacity 1s ease, transform 1s ease;
-      transform-style: preserve-3d;
-    }
-    .certifications.visible {
-      opacity: 1;
-      transform: translateY(0) rotateX(0deg);
-    }
-    .certifications p {
-      max-width: 700px;
-      font-size: 1.3rem;
-      line-height: 2;
-      color: #444;
-      margin: 0 auto;
-    }
-
-    /* About Section */
-    .about {
-      padding: 6rem 10%;
-      background: #fff;
-      text-align: center;
-      position: relative;
-      margin: -3rem 0 0;
-      border-radius: 30px;
-      box-shadow: 0 15px 40px rgba(0,0,0,0.15);
-      opacity: 0;
-      transform: translateY(50px) rotateX(10deg);
-      transition: opacity 1s ease, transform 1s ease;
-      transform-style: preserve-3d;
-    }
-    .about.visible {
-      opacity: 1;
-      transform: translateY(0) rotateX(0deg);
-    }
-    .about-content {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 3rem;
-      max-width: 1200px;
-      margin: 0 auto;
-      text-align: center;
-    }
-    .about-img {
-      width: 300px;
-      height: 300px;
-      object-fit: cover;
-      border-radius: 50%;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.25);
-      transition: transform 0.4s ease, box-shadow 0.4s ease;
-    }
-    .about-img:hover {
-      transform: scale(1.08) rotate(5deg);
-      box-shadow: 0 12px 30px rgba(0,0,0,0.35);
-    }
-    .about-text {
-      max-width: 700px;
-      font-size: 1.3rem;
-      line-height: 2;
-      color: #444;
-    }
-
     /* Contact Section */
     .contact {
-      padding: 6rem 10%;
+      padding: 3rem 10%;
       background: linear-gradient(135deg, #f9f9f9 0%, #f1f1f1 100%);
       text-align: center;
-      margin: -3rem 0 0;
-      border-radius: 30px;
-      box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+      margin: -2rem 0 0;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
       opacity: 0;
       transform: translateY(50px) rotateX(10deg);
       transition: opacity 1s ease, transform 1s ease;
@@ -355,9 +361,9 @@
       transform: translateY(0) rotateX(0deg);
     }
     .contact p {
-      font-size: 1.3rem;
+      font-size: 1.1rem;
       color: #555;
-      margin-bottom: 2rem;
+      margin-bottom: 1.5rem;
     }
     .contact a {
       color: #ff6347;
@@ -369,11 +375,11 @@
       color: #e0523a;
     }
     .social-links {
-      margin-top: 3rem;
+      margin-top: 2rem;
     }
     .social-links a {
-      margin: 0 1.5rem;
-      font-size: 2.5rem;
+      margin: 0 1.2rem;
+      font-size: 2rem;
       color: #333;
       transition: color 0.3s, transform 0.3s;
     }
@@ -385,11 +391,11 @@
     /* Footer */
     footer {
       text-align: center;
-      padding: 3rem;
+      padding: 2rem;
       background: #111;
       color: white;
-      margin-top: 4rem;
-      border-radius: 0 0 30px 30px;
+      margin-top: 3rem;
+      border-radius: 0 0 20px 20px;
     }
     footer a {
       color: #ff6347;
@@ -403,47 +409,61 @@
     /* Responsive Design */
     @media (max-width: 768px) {
       .hero h1 {
-        font-size: 3.5rem;
+        font-size: 3rem;
       }
       .hero p {
-        font-size: 1.1rem;
+        font-size: 1rem;
       }
       .cta {
-        padding: 1rem 2.5rem;
-        font-size: 1.1rem;
+        padding: 1rem 2rem;
+        font-size: 1rem;
       }
       h2 {
-        font-size: 2.5rem;
+        font-size: 2rem;
       }
       .carousel img {
-        width: 300px;
-        height: 250px;
-      }
-      .about-content {
-        flex-direction: column;
-      }
-      .about-img {
         width: 250px;
-        height: 250px;
+        height: 200px;
       }
-      .about-text {
+      .certifications-content {
+        flex-direction: column;
         text-align: center;
+      }
+      .certifications-img {
+        width: 150px;
+        height: 150px;
+      }
+      .certifications-text {
+        text-align: center;
+      }
+      .navbar-logo img {
+        height: 30px;
+      }
+      .navbar-links a {
+        font-size: 0.9rem;
+        margin-left: 1rem;
       }
     }
   </style>
 </head>
 <body>
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <div class="navbar-logo">
+      <!-- Replace the src URL below with the URL to your logo/icon -->
+      <img src="https://via.placeholder.com/40" alt="Tyler Young Media Logo">
+    </div>
+    <div class="navbar-links">
+      <a href="#">About</a>
+      <a href="#">Portfolio</a>
+      <a href="#">Contact</a>
+    </div>
+  </nav>
+
   <!-- Hero Section with Full-Screen YouTube Video -->
   <section class="hero">
-    <!-- To change the video loop start and end times, modify the 'start' and 'end' parameters below (in seconds).
-         Current: start=75 (1:15), end=102 (1:42). Replace with your desired times in seconds. -->
-    <iframe
-      src="https://www.youtube.com/embed/Wn-DjIepuoM?autoplay=1&mute=1&loop=1&playlist=Wn-DjIepuoM&controls=0&modestbranding=1&showinfo=0&rel=0&start=75&end=102"
-      frameborder="0"
-      allow="autoplay; encrypted-media"
-      allowfullscreen
-      loading="eager"
-    ></iframe>
+    <!-- The video loop is controlled via JavaScript below. Modify startTime and endTime in the script to change loop points. -->
+    <div id="player"></div>
     <div class="hero-text">
       <h1>Tyler Young Media</h1>
       <p>Transforming moments into cinematic experiences with professional videography and photography for events, real estate, and builder projects.</p>
@@ -456,16 +476,10 @@
     <!-- Certifications Section -->
     <section class="certifications">
       <h2>Certifications</h2>
-      <p>I am proud to be FAA Part 107 certified, ensuring safe and professional drone operations for aerial photography and videography. This certification allows me to deliver stunning, high-quality visuals while adhering to all federal regulations.</p>
-    </section>
-
-    <!-- About Section -->
-    <section class="about">
-      <h2>About Me</h2>
-      <div class="about-content">
-        <!-- Replace the src URL below with the URL to your own profile picture -->
-        <img src="https://images.unsplash.com/photo-1506794778202-6d1d5e1a2986" alt="Tyler Young" class="about-img">
-        <p class="about-text">Hi, I'm Tyler Young, a passionate media creator with over a decade of experience capturing life's most memorable moments. Specializing in events, real estate, and builder projects, I bring a cinematic touch to every project, ensuring your story is told with creativity and precision. My mission is to deliver high-quality visuals that resonate and inspire.</p>
+      <div class="certifications-content">
+        <!-- Replace the src URL below with the URL to your drone-related image -->
+        <img src="https://images.unsplash.com/photo-1506947411487-9fd3e447ed85" alt="FAA Part 107 Certification" class="certifications-img">
+        <p class="certifications-text">I am FAA Part 107 certified, ensuring safe and professional drone operations for aerial photography and videography. This certification allows me to deliver stunning, high-quality visuals while adhering to all federal regulations.</p>
       </div>
     </section>
 
@@ -474,14 +488,14 @@
       <h2>Events</h2>
       <div class="gallery">
         <div class="carousel-container">
-          <button class="carousel-arrow left" onclick="scrollCarousel('events-carousel', -400)">&#10094;</button>
+          <button class="carousel-arrow left" onclick="scrollCarousel('events-carousel', -350)">&#10094;</button>
           <div class="carousel" id="events-carousel">
             <!-- Replace the src URLs below with URLs to your own event images -->
             <img src="https://images.unsplash.com/photo-1521334884684-d80222895322" alt="Event 1" onclick="openModal(this.src)">
             <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30" alt="Event 2" onclick="openModal(this.src)">
             <img src="https://images.unsplash.com/photo-1515169067865-5387ec356754" alt="Event 3" onclick="openModal(this.src)">
           </div>
-          <button class="carousel-arrow right" onclick="scrollCarousel('events-carousel', 400)">&#10095;</button>
+          <button class="carousel-arrow right" onclick="scrollCarousel('events-carousel', 350)">&#10095;</button>
         </div>
       </div>
     </section>
@@ -491,14 +505,14 @@
       <h2>Builders</h2>
       <div class="gallery">
         <div class="carousel-container">
-          <button class="carousel-arrow left" onclick="scrollCarousel('builders-carousel', -400)">&#10094;</button>
+          <button class="carousel-arrow left" onclick="scrollCarousel('builders-carousel', -350)">&#10094;</button>
           <div class="carousel" id="builders-carousel">
             <!-- Replace the src URLs below with URLs to your own builder images -->
             <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e" alt="Builder 1" onclick="openModal(this.src)">
             <img src="https://images.unsplash.com/photo-1486308510493-aa64833634ef" alt="Builder 2" onclick="openModal(this.src)">
             <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c" alt="Builder 3" onclick="openModal(this.src)">
           </div>
-          <button class="carousel-arrow right" onclick="scrollCarousel('builders-carousel', 400)">&#10095;</button>
+          <button class="carousel-arrow right" onclick="scrollCarousel('builders-carousel', 350)">&#10095;</button>
         </div>
       </div>
     </section>
@@ -508,14 +522,14 @@
       <h2>Real Estate</h2>
       <div class="gallery">
         <div class="carousel-container">
-          <button class="carousel-arrow left" onclick="scrollCarousel('real-estate-carousel', -400)">&#10094;</button>
+          <button class="carousel-arrow left" onclick="scrollCarousel('real-estate-carousel', -350)">&#10094;</button>
           <div class="carousel" id="real-estate-carousel">
             <!-- Replace the src URLs below with URLs to your own real estate images -->
             <img src="https://images.unsplash.com/photo-1505691938895-1758d7feb511" alt="Real Estate 1" onclick="openModal(this.src)">
             <img src="https://images.unsplash.com/photo-1570129477492-45c003edd2be" alt="Real Estate 2" onclick="openModal(this.src)">
             <img src="https://images.unsplash.com/photo-1600585152910-0c124b8caa94" alt="Real Estate 3" onclick="openModal(this.src)">
           </div>
-          <button class="carousel-arrow right" onclick="scrollCarousel('real-estate-carousel', 400)">&#10095;</button>
+          <button class="carousel-arrow right" onclick="scrollCarousel('real-estate-carousel', 350)">&#10095;</button>
         </div>
       </div>
     </section>
@@ -545,7 +559,50 @@
     <img id="modalImage" src="" alt="Fullscreen Image">
   </div>
 
+  <script src="https://www.youtube.com/iframe_api"></script>
   <script>
+    // YouTube Iframe API setup
+    let player;
+    function onYouTubeIframeAPIReady() {
+      player = new YT.Player('player', {
+        videoId: 'Wn-DjIepuoM',
+        playerVars: {
+          autoplay: 1,
+          mute: 1,
+          controls: 0,
+          modestbranding: 1,
+          showinfo: 0,
+          rel: 0,
+          loop: 1,
+          playlist: 'Wn-DjIepuoM'
+        },
+        events: {
+          'onReady': onPlayerReady,
+          'onStateChange': onPlayerStateChange
+        }
+      });
+    }
+
+    function onPlayerReady(event) {
+      // Set start time (in seconds). Change startTime and endTime to adjust loop points.
+      const startTime = 75; // 1:15
+      const endTime = 102; // 1:42
+      event.target.seekTo(startTime);
+      event.target.playVideo();
+    }
+
+    function onPlayerStateChange(event) {
+      const startTime = 75; // 1:15
+      const endTime = 102; // 1:42
+      if (event.data === YT.PlayerState.PLAYING) {
+        const checkTime = setInterval(() => {
+          if (player.getCurrentTime() >= endTime) {
+            player.seekTo(startTime);
+          }
+        }, 100);
+      }
+    }
+
     function openModal(src) {
       const modal = document.getElementById('imageModal');
       const modalImage = document.getElementById('modalImage');
@@ -578,7 +635,7 @@
     });
 
     // Intersection Observer for scroll animations
-    const sections = document.querySelectorAll('h2, .gallery, .about, .contact, .certifications');
+    const sections = document.querySelectorAll('h2, .gallery, .certifications, .contact');
     const images = document.querySelectorAll('.carousel img');
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
