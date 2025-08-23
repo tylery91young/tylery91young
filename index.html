@@ -20,10 +20,10 @@
       overflow-x: hidden;
     }
 
-    /* Hero Section with Video Background */
+    /* Hero Section with YouTube Video Background */
     .hero {
       position: relative;
-      height: 87.5vh;
+      height: 90vh; /* Adjusted to 90% of viewport height for slightly wider coverage */
       display: flex;
       align-items: center;
       justify-content: flex-start;
@@ -31,7 +31,7 @@
       color: white;
       overflow: hidden;
     }
-    .hero video {
+    .hero iframe {
       position: absolute;
       top: 50%;
       left: 50%;
@@ -272,6 +272,7 @@
       gap: 3rem;
       max-width: 1200px;
       margin: 0 auto;
+      text-align: center;
     }
     .about-img {
       width: 300px;
@@ -287,7 +288,6 @@
     }
     .about-text {
       max-width: 700px;
-      text-align: left;
       font-size: 1.3rem;
       line-height: 2;
       color: #444;
@@ -358,7 +358,7 @@
     /* Responsive Design */
     @media (max-width: 768px) {
       .hero {
-        height: 70vh;
+        height: 75vh;
       }
       .hero h1 {
         font-size: 3.5rem;
@@ -391,12 +391,14 @@
   </style>
 </head>
 <body>
-  <!-- Hero Section with Video -->
+  <!-- Hero Section with YouTube Video -->
   <section class="hero">
-    <video autoplay muted loop playsinline>
-      <source src="https://assets.mixkit.co/videos/preview/mixkit-aerial-view-of-a-city-during-the-night-2153-large.mp4" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
+    <iframe
+      src="https://www.youtube.com/embed/?v=Wn-DjIepuoM&t=27s
+      frameborder="0"
+      allow="autoplay; encrypted-media"
+      allowfullscreen
+    ></iframe>
     <div class="hero-text">
       <h1>Tyler Young Media</h1>
       <p>Transforming moments into cinematic experiences with professional videography and photography for events, real estate, and builder projects.</p>
